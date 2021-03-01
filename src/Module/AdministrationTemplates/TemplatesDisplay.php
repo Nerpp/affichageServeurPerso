@@ -27,6 +27,8 @@ class TemplatesDisplay extends Router
 //        $twig->addGlobal('session', $_SESSION);
         $twig->addGlobal('current_page', $this->_sPage);
 
+        var_dump($this->_sFolder);
+
         echo $twig->render($this->_sFolder."\\".$this->_sPage.'.view.twig', $this->_aParam);
     }
 

@@ -6,21 +6,26 @@ class Router extends AbstractRouter{
 
     protected function router()
     {
-        $this->buildParam();
+        $this->pathAdmin();
 
         switch ($this->_sPage){
+
             case 'index':
-                $this->_sFolder = 'index';
-                var_dump('test');
+               
+                
                 break;
 
             case'gestion':
-                $this->_sFolder = 'gestion';
+               
                 
                 break;
 
             case 'registration':
-                $this->_sFolder = 'registration';
+               
+                break;
+
+            case 'connection':
+               
                 break;
 
             default:
