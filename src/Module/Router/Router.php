@@ -11,10 +11,12 @@ class Router extends AbstractRouter{
         switch ($this->_sPage){
             case 'index':
                 $this->_sFolder = 'index';
+                var_dump('test');
                 break;
 
             case'gestion':
                 $this->_sFolder = 'gestion';
+                
                 break;
 
             case 'registration':

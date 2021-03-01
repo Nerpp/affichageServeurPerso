@@ -4,7 +4,7 @@ require_once $directionFile;
 
 // pour ajouter de nouvelle classe à l\'autoload composer dump-autoload --optimize
 use App\Module\AdministrationTemplates\{
-    TemplateAdmin,
+    TemplatesDisplay,
     MesExtensions
 };
 
@@ -16,5 +16,9 @@ use App\Module\{
   Router
 };
 
-$displayView = new TemplateAdmin();
+
+
+
+$displayView = new TemplatesDisplay();
+
 $displayView->showTemplate();

@@ -4,7 +4,7 @@ namespace App\Module\AdministrationTemplates;
 use App\Module\Router\Router;
 
 
-class TemplateAdmin extends Router
+class TemplatesDisplay extends Router
 {
     public function __construct()
     {
@@ -15,6 +15,7 @@ class TemplateAdmin extends Router
     {
         $loader = new \Twig\Loader\FilesystemLoader('templates');
 
+        //Todo Supprimer debbug et mettre cache en TRUE pour mettre en production
         $twig = new \Twig\Environment($loader, [
             'cache' => FALSE, //'tmp',
             'debug' => true,

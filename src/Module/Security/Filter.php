@@ -3,7 +3,7 @@ namespace App\Module\Security;
 
 class Filter
 {
-    private $_aParameters = array();
+    private $_aParameters = [];
 
     public function __setParameters()
     {
@@ -17,7 +17,7 @@ class Filter
         $this->buildParameters();
     }
 
-    public function cleanIndex($value){
+    private function cleanIndex($value){
 
         $value = trim($value);
 
