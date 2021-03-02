@@ -2,13 +2,10 @@
 
 {% import "macroForm\\form.twig" as forms %}
 
+
 {% block header %}
-    <div class="col-12 text-center">
-        <h1>Connection</h1>
-    </div>
-
+    <h1>Inscription</h1>
 {% endblock %}
-
 
 {% block section %}
 <form name="{{ current_page }}Formulaire" action="index.php" method="post" class="was-validated">
@@ -18,20 +15,20 @@
 	<p>
 		{{ forms.input('password','votre mot de passe','','password') }}
 	</p>
-	{% if connectionErr|length > 0 %}
+	<p>
+		{{ forms.input('passwordConfirm','confirmer votre mot de passe','','password') }}
+	</p>
+	{% if setErr|length > 0 %}
 		<div class="col">
 			<p>
-				<span class="alert alert-danger">{{ connectionErr }}</span>
+				<span class="alert alert-danger">{{ setErr }}</span>
 			</p>
 		</div>
 	{% endif %}
 	<p>
 		<button type="submit" class="btn btn-primary">Soumettre</button>
-		<div class="">
-			<a href="index.php?p=update">Mot de passe Oublié</a>
-		</div>
+		
 	</p>
-	<input type="hidden" name="p" id="page" value="userCon">
+	<input type="hidden" name="p" id="page" value="userRegistration">
 </form>
-
 {% endblock %}

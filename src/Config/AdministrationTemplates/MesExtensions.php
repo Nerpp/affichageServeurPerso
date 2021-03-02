@@ -1,5 +1,5 @@
 <?php
-namespace App\Module\AdministrationTemplates;
+namespace App\Config\AdministrationTemplates;
 
 use Twig\Extension\AbstractExtension;
 

@@ -1,9 +1,10 @@
 <?php
-namespace App\Module\Router;
+namespace App\Config\Router;
 
-use App\Module\Security\Filter;
+use App\Config\Security\Filter;
+use App\Config\AbstractController\AbstractController;
 
-abstract class AbstractRouter
+abstract class AbstractRouter extends AbstractController
 {
     protected $_sPage           = '';
     protected $_sFolder         = '';
@@ -13,6 +14,7 @@ abstract class AbstractRouter
    
 
 
+
     protected function pathAdmin()
    {
 
@@ -20,6 +22,8 @@ abstract class AbstractRouter
    
         $this->_sPage = (!isset($this->_aCleanedUrl['p'])) ? 'index' : $this->_aCleanedUrl['p'];
         $this->_sFolder = $this->_sPage;
+
+        
 
         // if (isset($this->_aCleanedUrl['p'])){
         //    unset($this->_aCleanedUrl[array_search($this->_aCleanedUrl['p'], $this->_aCleanedUrl)]);

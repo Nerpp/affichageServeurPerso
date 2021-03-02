@@ -1,5 +1,5 @@
 <?php
-namespace App\Module\Router;
+namespace App\Config\Router;
 
 
 class Router extends AbstractRouter{
@@ -20,7 +20,7 @@ class Router extends AbstractRouter{
                 
                 break;
 
-            case 'registration':
+            case 'userRegistration':
                
                 break;
 

@@ -1,7 +1,7 @@
 <?php
-namespace App\Module\AdministrationTemplates;
+namespace App\Config\AdministrationTemplates;
 
-use App\Module\Router\Router;
+use App\Config\Router\Router;
 
 
 class TemplatesDisplay extends Router
@@ -26,8 +26,6 @@ class TemplatesDisplay extends Router
 
 //        $twig->addGlobal('session', $_SESSION);
         $twig->addGlobal('current_page', $this->_sPage);
-
-        var_dump($this->_sFolder);
 
         echo $twig->render($this->_sFolder."\\".$this->_sPage.'.view.twig', $this->_aParam);
     }
