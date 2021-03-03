@@ -1,36 +1,43 @@
 <?php
 namespace App\Config\Router;
 
+// use App\Config\AbstractController\AbstractController;
 
-class Router extends AbstractRouter{
+use App\Config\AbstractController\AbstractController;
+use App\Config\Security\Filter;
+use App\Controller\UserController;
 
+
+
+class Router {
+
+    
     protected function router()
     {
-        $this->pathAdmin();
+        $this->_aCleanedUrl = (new Filter())->__setParameters();
+        $this->_sPage = (!isset($this->_aCleanedUrl['p'])) ? 'index' : $this->_aCleanedUrl['p'];  
+        $this->_sFolder = $this->_sPage;
 
-        switch ($this->_sPage){
+        if(!empty($this->_aCleanedUrl)){
+            unset($this->_aCleanedUrl[array_search($this->_aCleanedUrl['p'], $this->_aCleanedUrl)]);
+            $this->_aParam = $this->_aCleanedUrl;
+        }
 
-            case 'index':
-               
-                
-                break;
+        
 
-            case'gestion':
-               
-                
-                break;
+        $this->test();
 
+    }
+
+    protected function test(){
+
+        switch ( $this->_sPage) {
             case 'userRegistration':
-               
+                $this->_aUserRegistration = (new UserController($this->_sPage,$this->_aParam));
                 break;
-
-            case 'connection':
-               
-                break;
-
+            
             default:
-                $this->_sPage = '404';
-                $this->_sFolder = '404';
+                # code...
                 break;
         }
     }

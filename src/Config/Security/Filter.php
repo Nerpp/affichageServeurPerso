@@ -14,25 +14,37 @@ class Filter
 
     public function __construct()
     {
+       
         $this->listen($_SERVER['REQUEST_METHOD']);
     }
 
 
-    public function listen( string $requestType){
+    private function listen(string $requestType){
 
+        
         $args = array(
             'p'    => FILTER_SANITIZE_STRING,
+            'password'    => FILTER_SANITIZE_STRING,
+            'passwordConfirm'    => FILTER_SANITIZE_STRING,
+            'mail'    => FILTER_SANITIZE_EMAIL,
+            'mail'    => FILTER_VALIDATE_EMAIL,
         );
 
         switch ($requestType) {
             case 'GET':
                 $this->_aParameters =  filter_input_array(INPUT_GET, $args);
+                if(!empty($this->_aParameters)){
+                    $this->_aParameters = array_filter($this->_aParameters);
+                }
+                
+                var_dump($this->_aParameters);
                 break;
-            case 'POST':
+            case 'POST':          
                 $this->_aParameters =  filter_input_array(INPUT_POST, $args);
+                var_dump($this->_aParameters);
                 break;
             default:
-                $this->_aInput = [];
+                $this->_aParameters = [];
                 break;
         }
     }
