@@ -24,10 +24,12 @@ class TemplatesDisplay extends Router
         $twig->addExtension(new \Twig\Extension\DebugExtension());
         $twig->addExtension(new MesExtensions());
 
-//        $twig->addGlobal('session', $_SESSION);
-        $twig->addGlobal('current_page', $this->_sPage);
+        $currentPage = $this->_sFolder."\\".'index.view.twig';
 
-        echo $twig->render($this->_sFolder."\\".$this->_sPage.'.view.twig', $this->_aParam);
+//        $twig->addGlobal('session', $_SESSION);
+        $twig->addGlobal('current_page', $currentPage);
+
+        echo $twig->render($currentPage, $this->_aParam);
     }
 
 }
