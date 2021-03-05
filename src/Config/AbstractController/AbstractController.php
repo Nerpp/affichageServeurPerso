@@ -1,15 +1,15 @@
 <?php
 namespace App\Config\AbstractController;
 
-use App\Config\Connection\ConnectionDbb;
-use App\Env\DatabaseEnv;
+use App\Model\User;
+
 
 
 class AbstractController
 {
-    
-   protected function loadBdd(){
-    $test = new ConnectionDbb;
-    var_dump('test');
-   }
+    public function loadEntity(){
+
+        $test = new User;
+    }
+  
 }

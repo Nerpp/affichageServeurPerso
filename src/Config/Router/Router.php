@@ -31,8 +31,6 @@ class Router {
 
         $this->urlAdmin();
 
-        var_dump($this->_sFolder);
-
         switch ($this->_sFolder) {
 
             case 'index':
