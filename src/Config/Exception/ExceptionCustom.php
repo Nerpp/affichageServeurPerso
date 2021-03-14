@@ -4,7 +4,7 @@ namespace App\Config\Exception;
 
 use App\Config\Time\Time;
 
-class ExceptionConfig extends \ErrorException
+class ExceptionCustom extends \ErrorException
 {
     private $_sType = "";
 
@@ -66,6 +66,7 @@ class ExceptionConfig extends \ErrorException
             
         // error_log($e, 1, 'wampkarl@gmail.com');
        
+        // je crée un fichier unique pour chaques types d'erreur dans le dossier Logs
         error_log($e, 3, "Logs/" . $this->_sType . ".txt");
 
         header("Location: \\templates\\404\index.view.twig"); 

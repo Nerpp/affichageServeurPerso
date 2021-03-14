@@ -1,13 +1,8 @@
 <?php
 namespace App\Config\Router;
 
-// use App\Config\AbstractController\AbstractController;
-
-use App\Config\AbstractController\AbstractController;
 use App\Config\Security\Filter;
-use App\Controller\UserController;
-
-
+use App\Controller\UserRegistration;
 
 class Router {
 
@@ -15,6 +10,17 @@ class Router {
     protected $_sFolder = '';
     
 
+    protected function redirectRoute(string $page,array $param)
+    {
+        if(!empty($page)){
+            $this->_sFolder = $page;
+        }
+        
+        if (!empty($param)) {
+            $this->_aParam = $param;
+        }
+       
+    }
     
     protected function urlAdmin()
     {
@@ -38,7 +44,8 @@ class Router {
                 break;
 
             case 'userRegistration':
-                $this->_aUserRegistration = (new UserController($this->_sFolder,$this->_aParam));
+                $this->_aUserRegistration = (new UserRegistration($this->_sFolder,$this->_aParam));
+                
                 break;
             
             default:

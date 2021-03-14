@@ -2,14 +2,15 @@
 namespace App\Config\Connection;
 
 use App\Config\Env\AbstractEnv;
-use App\Config\Exception\ExceptionConfig;
+use App\Config\Exception\ExceptionCustom;
 use \PDO;
 
 class ConnectionDbb extends AbstractEnv
 {
   
-        public function test()
+        public function __invoke()
         {
+            
             $this->configBdd();
             
           
@@ -19,10 +20,11 @@ class ConnectionDbb extends AbstractEnv
             ];
 
             try { 
-                return new \PDO('mysql:host=' . $this->_Data['valueServeur']. ';dbname=' . $this->_aData['bddName'] . ';charset=utf8', $this->_aData['valueRoot'], $this->_aData['valueMdp'], $options);  
-            } catch (\ErrorException $e) {
+                return new \PDO('mysql:host=' . $this->_aData['valueServeur']. ';dbname=' . $this->_aData['bddName'] . ';charset=utf8', $this->_aData['valueRoot'], $this->_aData['valueMdp'], $options);  
+            } 
+            catch (\PDOException $e) {
                 
-                (new ExceptionConfig())->enregistrementErreur($e);
+                (new ExceptionCustom())->enregistrementErreur($e);
             }
             
         }

@@ -3,12 +3,12 @@ namespace App\Config\Exception;
 
 function error2exception($code, $message, $fichier, $ligne)
 {
-    throw new ExceptionConfig($message,0,$code, $fichier, $ligne);
+    throw new ExceptionCustom($message,0,$code, $fichier, $ligne);
 }
 
 function customException($e)
 {
-    $oMonException = new ExceptionConfig();
+    $oMonException = new ExceptionCustom();
     $oMonException->enregistrementErreur($e);
 }
 

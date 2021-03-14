@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Config\Security;
 
 class Filter
@@ -10,22 +11,23 @@ class Filter
         return $this->_aParameters;
     }
 
-    
 
     public function __construct()
     {
-       
+
         $this->listen($_SERVER['REQUEST_METHOD']);
     }
 
 
-    private function listen(string $requestType){
+    private function listen(string $requestType)
+    {
 
-        
+
         $args = array(
             'p'    => FILTER_SANITIZE_STRING,
             'password'    => FILTER_SANITIZE_STRING,
             'passwordConfirm'    => FILTER_SANITIZE_STRING,
+            'pseudonyme'    => FILTER_SANITIZE_STRING,
             'mail'    => FILTER_SANITIZE_EMAIL,
             'mail'    => FILTER_VALIDATE_EMAIL,
         );
@@ -33,20 +35,27 @@ class Filter
         switch ($requestType) {
             case 'GET':
                 $this->_aParameters =  filter_input_array(INPUT_GET, $args);
-                if(!empty($this->_aParameters)){
-                    $this->_aParameters = array_filter($this->_aParameters);
+                if (!empty($this->_aParameters) ) {
+                   $this->_aParameters = array_filter($this->_aParameters);
+                   var_dump($this->_aParameters);
+                   return;
                 }
-                
-                var_dump($this->_aParameters);
+                $this->_aParameters = [];
                 break;
-            case 'POST':          
+
+            case 'POST':
                 $this->_aParameters =  filter_input_array(INPUT_POST, $args);
-                var_dump($this->_aParameters);
+                if (!empty($this->_aParameters)) {
+                   
+                 $this->_aParameters = array_filter($this->_aParameters);
+                 var_dump($this->_aParameters);
+                 return;
+                }
+                $this->_aParameters = [];
                 break;
             default:
                 $this->_aParameters = [];
                 break;
         }
     }
-  
 }
