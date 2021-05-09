@@ -11,11 +11,10 @@ abstract class AbstractController implements InterfaceController
     protected $_aErr = [];
 
 
-    
+    abstract public function _getParam(string $page, array $var);
 
     public function _setParam()
     {
-
         return $this->_aParams;
     }
 
@@ -24,25 +23,9 @@ abstract class AbstractController implements InterfaceController
        return $this->_sPage ;
     }
 
-    public function _setErr()
-    {
-        return $this->_aErr;
-    }
-
-    protected function _getParam(array $var)
-    {
-        $this->_aParams  = $var;
-    }
-    
     protected function _getPage(string $var)
     {
          $this->_sPage = $var;
     }
 
-    protected function _getErr(string $index,string $message)
-    {
-        $this->_aErr[$index] = $message;
-    }
-
-    
 }

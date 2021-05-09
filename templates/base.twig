@@ -46,24 +46,20 @@
 
 {{ include('\\navbar\\navbar.twig') }}
 
+<header>
+{% block header %}{% endblock %}
+</header>
+
+<section>
+     {% block subtitle %}{% endblock %}
+</section>
+
+<section>
+{% block section %}{% endblock %}
+</section>
 
 
-<div class="container">
-    <div class="row">
-        {% block header %}
-
-        {% endblock %}
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="row">
-        {% block section %}{% endblock %}
-    </div>
-</div>
-
-<div class="container-fluid">
+{# <div class="container-fluid">
     <div class="row">
         <div class="col-6">
             {% block perso %}{% endblock %}
@@ -72,7 +68,7 @@
             {% block examen %}{% endblock %}
         </div>
     </div>
-</div>
+</div> #}
 
 <!-- javascript et Ajax pour le Caroussel -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>

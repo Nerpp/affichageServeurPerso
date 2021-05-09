@@ -2,55 +2,53 @@
 namespace App\Controller;
 
 use App\Config\ConfigController\AbstractController;
-use App\Model\UserModel;
+use App\Model\RegistrationModel;
+use App\Config\Security\FormRegistration;
 
-class UserRegistration extends AbstractController
+final class UserRegistration extends AbstractController
 {
-    public function __construct($page,$params){
-
-        $this->_getPage($page);
-        $this->_getParam($params);
-        $this->dbbCon = new UserModel;
-        $this->userRegistration();
+    public function __construct(){
+        $this->dbbCon = new RegistrationModel;
+        $this->formRegistration = new FormRegistration;
        }
 
-    private function userRegistration(){
+       public function _getParam(string $page, array $var)
+    {
+        $this->_sPage = $page;
+        $this->_aParams['User']  = $var;
+        $this->userRegistration();
+    }
+
+    private function userRegistration()
+    {
+        $this->formRegistration->__getParam($this->_aParams['User']);
+
+        if(!empty($this->formRegistration->__setErr())){
+            $this->_aParams['Err'] = $this->formRegistration->__setErr();
+        }
+       
         
-        if (!isset($this->_setParam()['mail'])) {
-            
-            $this->_getErr('mail',"Veuillez renseigner une adresse mail correcte");
+
+        // if (isset($this->_aParams['pseudonyme'])) {
            
-        }
+        //     $checkPseudo = $this->dbbCon->findBy('pseudonyme','user','pseudonyme');
 
-        if (!isset($this->_setParam()['pseudonyme'])) {
-           
-            $this->_getErr('pseudonyme',"Vous devez choisir un pseudonyme");
-         }
+        //     if ($checkPseudo !== null) {
+        //         $this->_aErr['pseudonyme'] = "Le pseudonyme est déjà utilisè";
+        //     }
 
-         if (isset($this->_setParam()['pseudonyme'])) {
-           
-            $this->_getErr('pseudonyme',"Vous devez choisir un pseudonyme");
-         }
-
-
-
-         if (!isset($this->_setParam()['password'])) {
-           
-            $this->_getErr('password',"Veuillez renseigner votre mot de passe");
-        }
-
-        if (isset($this->_setParam()['password']) && strlen($this->_setParam()['password']) < 5  ) {
-            
-            $this->_getErr('password',"Votre mot de passe doit être superieur à 5 caractères");
-        }
-
-        if(isset($this->_setParam()['password']) && isset($this->_setParam()['passwordConfirm']) && $this->_setParam()['password'] !== $this->_setParam()['passwordConfirm'] ){
-            
-            $this->_getErr('passwordConfirm',"Votre mot de passe doit être confirmer");
+          var_dump(empty($this->formRegistration->__setErr()));
+          if (empty($this->_aErr) !== true && empty($this->_aParams['User'])) {
+            $this->_aParams['Err'] = $this->_aErr;
+            return;
           }
 
+          $this->userRegistrationDbb();
+    }
 
-          var_dump($this->_setErr());
+    private function userRegistrationDbb()
+    {
+        var_dump('test');
     }
 }
 

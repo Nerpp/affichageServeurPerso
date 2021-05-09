@@ -11,7 +11,6 @@ class Filter
         return $this->_aParameters;
     }
 
-
     public function __construct()
     {
 
@@ -21,8 +20,6 @@ class Filter
 
     private function listen(string $requestType)
     {
-
-
         $args = array(
             'p'    => FILTER_SANITIZE_STRING,
             'password'    => FILTER_SANITIZE_STRING,

@@ -2,7 +2,7 @@
 namespace App\Config\Env;
 
 
-class AbstractEnv
+class Env
 {
     protected $_aData = [];
 
@@ -23,7 +23,6 @@ class AbstractEnv
             
             $valueRoot = explode('=', $aData[3]);
             $this->_aData += array('valueRoot'=>trim($valueRoot[1]));
-
             $valueMdp = explode('=', $aData[4]);
             $this->_aData += array('valueMdp'=>trim($valueMdp[1]));
 
