@@ -2,13 +2,13 @@
 namespace App\Controller;
 
 use App\Config\ConfigController\AbstractController;
-use App\Model\RegistrationModel;
+use App\Model\UserModel;
 use App\Config\Security\FormRegistration;
 
 final class UserRegistration extends AbstractController
 {
     public function __construct(){
-        $this->dbbCon = new RegistrationModel;
+        $this->dbbCon = new UserModel;
         $this->formRegistration = new FormRegistration;
        }
 
@@ -21,39 +21,26 @@ final class UserRegistration extends AbstractController
 
     private function userRegistration()
     {
-        $this->formRegistration->__getParam($this->_aParams['User']);
+        $this->formRegistration->_getParam($this->_aParams['User']);
 
-        if(!empty($this->formRegistration->__setErr())){
+        if(!empty($this->formRegistration->_setErr())){
             $this->_aParams['Err'] = $this->formRegistration->__setErr();
+            return;
         }
        
+        $checkPseudo = $this->dbbCon->findBy('pseudonyme','user','pseudonyme');
+
+        var_dump($checkPseudo);
         
 
-        // if (isset($this->_aParams['pseudonyme'])) {
-           
-        //     $checkPseudo = $this->dbbCon->findBy('pseudonyme','user','pseudonyme');
-
-        //     if ($checkPseudo !== null) {
-        //         $this->_aErr['pseudonyme'] = "Le pseudonyme est déjà utilisè";
-        //     }
-
-          var_dump(empty($this->formRegistration->__setErr()));
-          if (empty($this->_aErr) !== true && empty($this->_aParams['User'])) {
-            $this->_aParams['Err'] = $this->_aErr;
-            return;
-          }
-
-          $this->userRegistrationDbb();
+        // $this->insertDbb();
     }
 
-    private function userRegistrationDbb()
+    private function insertDbb()
     {
-        var_dump('test');
+        // $this->dbbCon->userSaving(string $pseudonyme, string $email, string $mdp,int $codeValidation)
     }
 }
 
 
-    // private $_sPepper = "à completer plus tard";
-    //     $pwd_peppered = hash_hmac("sha256", $value['passwordConfirm'], $this->_sPepper);
-    //     $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
-    //    var_dump($pwd_hashed);
+   

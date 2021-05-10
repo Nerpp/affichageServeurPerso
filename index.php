@@ -1,9 +1,7 @@
 <?php
 session_start();
-$directionFile = __DIR__ . "/vendor/autoload.php";
-require_once $directionFile;
 
-
+require dirname(__DIR__).'/vendor/autoload.php';
 // TODO remettre en place les exceptions avant productions
 // require_once 'src\Config\Exception\ExceptionCustom.php';
 // require_once 'src\Config\Exception\Exception.php';

@@ -29,7 +29,7 @@ class TemplatesDisplay extends Router
 //        $twig->addGlobal('session', $_SESSION);
         $twig->addGlobal('current_page', $currentPage);
 
-        echo $twig->render($currentPage, $this->_aParam);
+        print_r($twig->render($currentPage, $this->_aParam));
     }
 
 }

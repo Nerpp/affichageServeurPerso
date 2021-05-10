@@ -9,13 +9,13 @@ class FormRegistration
     protected $_aErr;
     protected $_iLenght = 8;
 
-    public function __getParam(array $var)
+    public function _getParam(array $var)
     {
      $this->_aParams = $var; 
      $this->checkRegistration();  
     }
 
-    public function __setErr()
+    public function _setErr()
     {
         return $this->_aErr;
     }

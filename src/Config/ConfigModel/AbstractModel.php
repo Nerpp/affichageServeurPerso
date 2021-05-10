@@ -30,32 +30,16 @@ class AbstractModel implements InterfaceModel
         $this->_rParams = $var;
     }
 
-    protected function beBind($value){
-        
-            switch ($value) {
-                case is_string($value):
-                    $this->_sWhere = ':'.strval($value);
-                    $this->_rParam = \PDO::PARAM_STR;
-                    return ;
-                    break;
-                
-                default:
-                   
-                    break;
-            }
-    }
 
-    public function _getBy($selection,$from,$where)
+    public function findBy(string $selection,string $from, string $where)
     {
         $req = $this->_rConnectionDbb->getConnection()->prepare("SELECT $selection 
         FROM $from 
         WHERE $where = :$where ");
-        $this->beBind($where);
-        $req->bindValue($this->_sWhere, $where, $this->_rParam);
         $req->execute();
         $resultat = $req->fetch(\PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $resultat[$where];
     }
- 
+    
 }
